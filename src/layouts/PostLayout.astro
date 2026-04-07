@@ -22,10 +22,10 @@ function formatDate(d: Date): string {
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="pt-32 pb-20 px-8">
-    <article class="max-w-screen-md mx-auto relative">
+  <main class="pt-32 pb-20 px-6">
+    <article class="max-w-[680px] mx-auto">
       <!-- Metadata Header -->
-      <header class="mb-20">
+      <header class="mb-12">
         <div class="flex items-center gap-4 mb-6">
           <span
             class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary px-2 py-1 bg-primary-container/30"
@@ -37,13 +37,13 @@ function formatDate(d: Date): string {
           </span>
         </div>
         <h1
-          class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-8 leading-[1.1]"
+          class="font-body text-[42px] font-semibold text-on-surface mb-4 leading-[1.15]"
         >
           {title}
         </h1>
         {
           subtitle && (
-            <p class="font-body text-xl md:text-2xl italic text-on-surface-variant leading-relaxed border-l-2 border-primary-fixed pl-8 ml-2">
+            <p class="font-body text-[17px] italic text-outline leading-relaxed pb-6 border-b border-outline-variant">
               {subtitle}
             </p>
           )
@@ -99,7 +99,7 @@ function formatDate(d: Date): string {
               </a>
               <a
                 class="font-label text-[10px] uppercase tracking-widest font-bold text-primary hover:text-primary-dim transition-colors"
-                href="/archive"
+                href="/#archive"
               >
                 Read Archive
               </a>

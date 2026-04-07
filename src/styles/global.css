@@ -37,7 +37,7 @@
   }
 
   .prose-ps p {
-    @apply text-lg md:text-xl leading-relaxed mb-6;
+    @apply text-[19px] leading-[1.75] mb-6;
   }
 
   .prose-ps blockquote {
