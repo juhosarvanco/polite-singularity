@@ -88,6 +88,22 @@
     @apply bg-transparent p-0;
   }
 
+  .prose-ps figure.illustration {
+    @apply my-12 text-center;
+  }
+
+  .prose-ps figure.illustration img {
+    @apply w-full grayscale contrast-125 mix-blend-multiply mx-auto;
+  }
+
+  .prose-ps figure.illustration svg {
+    @apply mx-auto block;
+  }
+
+  .prose-ps figure.illustration figcaption {
+    @apply mt-3 text-sm text-outline italic font-label text-center;
+  }
+
   .prose-ps img {
     @apply w-full grayscale contrast-125 mix-blend-multiply my-12;
   }
