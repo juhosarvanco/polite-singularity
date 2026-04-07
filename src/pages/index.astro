@@ -11,7 +11,7 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
     <!-- Title -->
     <header class="mb-32">
       <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-4">
-        Welcome to
+        Welcome to the
       </p>
       <h1
         class="text-6xl md:text-8xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95]"
@@ -22,9 +22,6 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 
     <!-- Essays -->
     <section>
-      <h2 class="text-center font-label uppercase tracking-[0.2em] text-[11px] font-bold text-outline mb-10">
-        Essays
-      </h2>
       <ul class="space-y-4 text-center">
         {posts.map((post) => (
           <li>
