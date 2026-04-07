@@ -4,36 +4,193 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit',
+  });
+}
 ---
 
-<BaseLayout title="Home" activeTab="home">
-  <main class="pt-40 pb-20 px-8 max-w-4xl mx-auto">
-    <!-- Title -->
-    <header class="mb-32">
+<BaseLayout title="Home" isHomePage={true}>
+  <!-- HOME -->
+  <section
+    id="home"
+    class="min-h-screen flex flex-col justify-center px-8 max-w-4xl mx-auto"
+  >
+    <header>
       <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-4">
         Welcome to the
       </p>
       <h1
-        class="text-6xl md:text-8xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95]"
+        class="text-6xl md:text-8xl font-headline font-extrabold tracking-tight text-on-surface leading-[0.95] mb-16"
       >
         Polite <br />Singularity.
       </h1>
     </header>
 
-    <!-- Essays -->
-    <section>
-      <ul class="space-y-4 text-center">
-        {posts.map((post) => (
-          <li>
-            <a
-              href={`/posts/${post.id}`}
-              class="font-body text-lg text-on-surface hover:text-primary transition-colors duration-150"
+    <ul class="space-y-4">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={`/posts/${post.id}`}
+            class="font-body text-lg text-on-surface hover:text-primary transition-colors duration-150"
+          >
+            {post.data.title}
+          </a>
+        </li>
+      ))}
+      {posts.length === 0 && (
+        <li class="font-body italic text-on-surface-variant text-lg">
+          First essays arriving soon.
+        </li>
+      )}
+    </ul>
+  </section>
+
+  <!-- ARCHIVE -->
+  <section
+    id="archive"
+    class="min-h-screen flex flex-col justify-center px-8 max-w-4xl mx-auto"
+    style="scroll-margin-top: 80px;"
+  >
+    <header class="mb-24">
+      <div class="mb-4">
+        <span class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
+          Volume I
+        </span>
+      </div>
+      <h2
+        class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface mb-8 leading-[0.9]"
+      >
+        Archive of Thoughtful <span class="font-body italic font-normal text-primary">Inquiries</span>.
+      </h2>
+      <p class="max-w-xl text-xl text-on-surface-variant leading-relaxed">
+        A collection of long-form essays exploring the intersection of technology, humanism,
+        and the quiet dignity of the analog world.
+      </p>
+    </header>
+
+    <div class="space-y-24">
+      {posts.map((post) => (
+        <article class="group max-w-2xl">
+          <div class="mb-3 flex items-center gap-4">
+            <time class="font-label uppercase tracking-widest text-[10px] font-bold text-outline">
+              {formatDate(post.data.date)}
+            </time>
+            <span class="h-px w-8 bg-outline-variant" />
+            <span class="font-label uppercase tracking-widest text-[10px] font-bold text-primary">
+              {post.data.category}
+            </span>
+          </div>
+          <h3 class="text-3xl md:text-4xl font-body font-bold mb-4 group-hover:text-primary transition-colors duration-200">
+            <a href={`/posts/${post.id}`}>{post.data.title}</a>
+          </h3>
+          <p class="text-lg text-on-surface-variant leading-relaxed mb-6">
+            {post.data.description}
+          </p>
+          <a
+            href={`/posts/${post.id}`}
+            class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border-b border-on-surface pb-1 hover:text-primary hover:border-primary transition-all"
+          >
+            Read Essay
+          </a>
+        </article>
+      ))}
+      {posts.length === 0 && (
+        <p class="font-body italic text-on-surface-variant text-xl">
+          The archive is being prepared. First essays arriving soon.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section
+    id="newsletter"
+    class="min-h-screen flex flex-col justify-center px-6 max-w-4xl mx-auto"
+    style="scroll-margin-top: 80px;"
+  >
+    <div class="max-w-2xl w-full text-center space-y-12 mx-auto">
+      <!-- Envelope illustration -->
+      <div class="w-20 h-20 mx-auto bg-surface-container flex items-center justify-center">
+        <svg
+          class="w-10 h-10 stroke-on-surface/50 fill-none"
+          stroke-linecap="square"
+          stroke-width="2"
+          viewBox="0 0 48 48"
+        >
+          <rect x="4" y="10" width="40" height="28" />
+          <polyline points="4,10 24,28 44,10" />
+        </svg>
+      </div>
+
+      <div class="space-y-4">
+        <h2
+          class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-tight"
+        >
+          Join the quiet merger
+        </h2>
+        <p
+          class="text-xl md:text-2xl font-body italic text-on-surface-variant max-w-xl mx-auto leading-relaxed"
+        >
+          Essays on tech and consciousness, delivered to your thinking space once a month.
+          No noise, just signal.
+        </p>
+      </div>
+
+      <form class="w-full max-w-md mx-auto pt-8" action="#" method="POST">
+        <div class="relative flex flex-col space-y-8">
+          <div class="group">
+            <label
+              class="block font-label text-[10px] uppercase tracking-[0.2em] font-bold text-outline mb-1 text-left"
+              for="email"
             >
-              {post.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  </main>
+              Electronic Mail
+            </label>
+            <input
+              class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-xl font-body focus:ring-0 focus:border-primary transition-all placeholder:text-outline-variant/50 outline-none"
+              id="email"
+              name="email"
+              placeholder="reader@thought.com"
+              type="email"
+              required
+            />
+          </div>
+          <button
+            class="w-full bg-primary text-on-primary font-headline font-bold uppercase tracking-widest py-5 text-sm transition-all duration-150 ease-linear hover:bg-primary-dim"
+            type="submit"
+          >
+            Subscribe
+          </button>
+        </div>
+        <p class="mt-8 font-label text-[10px] uppercase tracking-widest text-outline-variant">
+          Respectful of your attention. One-click unsubscribe.
+        </p>
+      </form>
+
+      <div class="pt-20 grid grid-cols-1 md:grid-cols-2 gap-12 text-left max-w-3xl mx-auto border-t border-outline-variant/30">
+        <div class="space-y-3">
+          <span class="font-label text-[11px] font-bold uppercase tracking-widest text-primary">
+            01. The Frequency
+          </span>
+          <p class="font-body text-on-surface-variant">
+            The Polite Singularity arrives at most once a month. A long-form meditation
+            designed for focused weekend reading.
+          </p>
+        </div>
+        <div class="space-y-3">
+          <span class="font-label text-[11px] font-bold uppercase tracking-widest text-primary">
+            02. The Content
+          </span>
+          <p class="font-body text-on-surface-variant">
+            Original synthesis of artificial intelligence, digital philosophy, and the future
+            of human awareness. No curation, only creation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
