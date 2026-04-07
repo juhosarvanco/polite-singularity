@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activeTab?: 'home' | 'archive' | 'about' | 'newsletter';
+  activeTab?: 'home' | 'archive' | 'newsletter';
 }
 
 const { activeTab = 'home' } = Astro.props;
@@ -8,6 +8,7 @@ const { activeTab = 'home' } = Astro.props;
 const navItems = [
   { href: '/', label: 'Home', id: 'home' as const },
   { href: '/archive', label: 'Archive', id: 'archive' as const },
+  { href: '/newsletter', label: 'Newsletter', id: 'newsletter' as const },
 ];
 
 function isActive(id: string) {
@@ -35,12 +36,6 @@ function isActive(id: string) {
           {item.label}
         </a>
       ))}
-      <button
-        id="subscribe-btn"
-        class="bg-primary text-on-primary px-5 py-2 font-headline uppercase tracking-widest text-[10px] font-bold hover:bg-primary-dim transition-all duration-150 ease-linear"
-      >
-        Subscribe
-      </button>
     </div>
 
     <!-- Mobile menu button -->
@@ -64,93 +59,13 @@ function isActive(id: string) {
         {item.label}
       </a>
     ))}
-    <button
-      class="subscribe-trigger w-full bg-primary text-on-primary px-5 py-3 font-headline uppercase tracking-widest text-[10px] font-bold hover:bg-primary-dim transition-all duration-150 ease-linear"
-    >
-      Subscribe
-    </button>
   </div>
 </header>
 
-<!-- Subscribe Modal -->
-<div id="subscribe-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-on-surface/40 backdrop-blur-sm">
-  <div class="bg-surface-container-lowest max-w-md w-full mx-6 p-12 relative">
-    <button id="close-modal" class="absolute top-4 right-4 text-outline hover:text-on-surface transition-colors">
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="space-y-6 text-center">
-      <h2 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface">
-        Join the quiet merger
-      </h2>
-      <p class="text-lg font-body italic text-on-surface-variant leading-relaxed">
-        Essays on tech and consciousness, delivered to your thinking space once a month. No noise, just signal.
-      </p>
-    </div>
-
-    <form class="mt-10 space-y-8" action="#" method="POST">
-      <div>
-        <label class="block font-label text-[10px] uppercase tracking-[0.2em] font-bold text-outline mb-1" for="modal-email">
-          Electronic Mail
-        </label>
-        <input
-          class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-xl font-body focus:ring-0 focus:border-primary transition-all placeholder:text-surface-dim"
-          id="modal-email"
-          name="email"
-          placeholder="reader@thought.com"
-          type="email"
-          required
-        />
-      </div>
-      <button
-        type="submit"
-        class="w-full bg-primary text-on-primary font-headline font-bold uppercase tracking-widest py-4 text-sm transition-all duration-150 ease-linear hover:bg-primary-dim"
-      >
-        Subscribe
-      </button>
-      <p class="font-label text-[10px] uppercase tracking-widest text-outline-variant text-center">
-        Respectful of your attention. One-click unsubscribe.
-      </p>
-    </form>
-  </div>
-</div>
-
 <script>
-  // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   mobileMenuBtn?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
-  });
-
-  // Subscribe modal
-  const modal = document.getElementById('subscribe-modal');
-  const openBtns = [
-    document.getElementById('subscribe-btn'),
-    ...document.querySelectorAll('.subscribe-trigger'),
-  ];
-  const closeBtn = document.getElementById('close-modal');
-
-  function openModal() {
-    modal?.classList.remove('hidden');
-    modal?.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal?.classList.add('hidden');
-    modal?.classList.remove('flex');
-    document.body.style.overflow = '';
-  }
-
-  openBtns.forEach((btn) => btn?.addEventListener('click', openModal));
-  closeBtn?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
   });
 </script>
