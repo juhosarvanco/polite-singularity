@@ -1,0 +1,112 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  date: Date;
+  category: string;
+  readingTime?: string;
+}
+
+const { title, subtitle, description, date, category, readingTime } = Astro.props;
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  });
+}
+---
+
+<BaseLayout title={title} description={description} activeTab="archive">
+  <main class="pt-32 pb-20 px-8">
+    <article class="max-w-screen-md mx-auto relative">
+      <!-- Metadata Header -->
+      <header class="mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span
+            class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary px-2 py-1 bg-primary-container/30"
+          >
+            {category}
+          </span>
+          <span class="font-label text-[10px] uppercase tracking-[0.2em] font-medium text-outline">
+            {formatDate(date)}{readingTime && ` — ${readingTime}`}
+          </span>
+        </div>
+        <h1
+          class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-8 leading-[1.1]"
+        >
+          {title}
+        </h1>
+        {
+          subtitle && (
+            <p class="font-body text-xl md:text-2xl italic text-on-surface-variant leading-relaxed border-l-2 border-primary-fixed pl-8 ml-2">
+              {subtitle}
+            </p>
+          )
+        }
+      </header>
+
+      <!-- Essay Body -->
+      <section class="prose-ps text-on-surface leading-relaxed">
+        <slot />
+      </section>
+
+      <!-- Finis divider -->
+      <div class="h-24 flex items-center justify-center my-12">
+        <div class="w-16 h-px bg-outline-variant"></div>
+        <div class="mx-6 font-headline text-xs font-bold uppercase tracking-[0.5em] text-outline">
+          Finis
+        </div>
+        <div class="w-16 h-px bg-outline-variant"></div>
+      </div>
+
+      <!-- Author Bio -->
+      <section class="mt-20 pt-12 border-t border-surface-container-highest">
+        <div class="flex flex-col md:flex-row items-start gap-8">
+          <div class="w-24 h-24 bg-surface-container-highest flex-shrink-0 flex items-center justify-center">
+            <svg
+              class="w-12 h-12 stroke-on-surface/40 fill-none"
+              stroke-linecap="square"
+              stroke-width="2"
+              viewBox="0 0 100 150"
+            >
+              <circle cx="50" cy="30" r="10"></circle>
+              <path d="M50 40 L50 90"></path>
+              <path d="M50 50 L30 70 L20 70"></path>
+              <path d="M50 50 L70 70 L80 70"></path>
+              <path d="M50 90 L35 130"></path>
+              <path d="M50 90 L65 130"></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-headline font-bold text-xl mb-2">Written by Juho</h3>
+            <p class="font-body text-on-surface-variant text-lg max-w-md leading-relaxed">
+              Investigating the intersection of philosophy, artificial intelligence, and the future
+              of creative labor. Curator of the Polite Singularity.
+            </p>
+            <div class="mt-6 flex gap-4">
+              <a
+                class="font-label text-[10px] uppercase tracking-widest font-bold text-primary hover:text-primary-dim transition-colors"
+                href="https://x.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                Follow on Twitter
+              </a>
+              <a
+                class="font-label text-[10px] uppercase tracking-widest font-bold text-primary hover:text-primary-dim transition-colors"
+                href="/archive"
+              >
+                Read Archive
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+</BaseLayout>

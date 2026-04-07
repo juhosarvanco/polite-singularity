@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  ::selection {
+    background-color: #ffddbb;
+    color: #5d3700;
+  }
+
+  body {
+    font-family: 'Newsreader', serif;
+    color: #323232;
+    background-color: #f9f9f9;
+  }
+
+  .drop-cap::first-letter {
+    float: left;
+    font-family: 'Manrope', sans-serif;
+    font-size: 4rem;
+    line-height: 0.8;
+    padding-top: 4px;
+    padding-right: 12px;
+    font-weight: 800;
+    color: #885200;
+  }
+}
+
+@layer components {
+  /* Prose styles for Markdown content */
+  .prose-ps h2 {
+    @apply font-headline text-3xl font-bold tracking-tight text-on-surface pt-8 mb-6;
+  }
+
+  .prose-ps h3 {
+    @apply font-headline text-2xl font-bold tracking-tight text-on-surface pt-6 mb-4;
+  }
+
+  .prose-ps p {
+    @apply text-lg md:text-xl leading-relaxed mb-6;
+  }
+
+  .prose-ps blockquote {
+    @apply my-16 border-l-4 border-primary pl-8 py-2;
+  }
+
+  .prose-ps blockquote p {
+    @apply font-body italic text-2xl md:text-3xl text-on-surface leading-snug mb-0;
+  }
+
+  .prose-ps ul {
+    @apply space-y-3 my-8 pl-6;
+  }
+
+  .prose-ps ul li {
+    @apply text-lg leading-relaxed list-disc;
+  }
+
+  .prose-ps ol {
+    @apply space-y-3 my-8 pl-6;
+  }
+
+  .prose-ps ol li {
+    @apply text-lg leading-relaxed list-decimal;
+  }
+
+  .prose-ps a {
+    @apply text-primary border-b border-primary/40 hover:border-primary transition-colors;
+  }
+
+  .prose-ps strong {
+    @apply font-semibold;
+  }
+
+  .prose-ps em {
+    @apply italic;
+  }
+
+  .prose-ps code {
+    @apply bg-surface-container px-2 py-0.5 text-base font-mono;
+  }
+
+  .prose-ps pre {
+    @apply bg-surface-container p-6 my-8 overflow-x-auto;
+  }
+
+  .prose-ps pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose-ps img {
+    @apply w-full grayscale contrast-125 mix-blend-multiply my-12;
+  }
+
+  .prose-ps hr {
+    @apply border-none h-24 flex items-center justify-center my-12;
+  }
+
+  /* Section divider */
+  .finis {
+    @apply h-24 flex items-center justify-center my-12;
+  }
+
+  .finis::before {
+    content: '';
+    @apply w-16 h-px bg-outline-variant;
+  }
+
+  .finis::after {
+    content: '';
+    @apply w-16 h-px bg-outline-variant;
+  }
+}

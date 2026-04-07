@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home" activeTab="home">
+  <main class="pt-40 pb-20 px-8 max-w-4xl mx-auto">
+    <!-- Editorial Header -->
+    <header class="mb-24">
+      <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-4">
+        Foundation Statement
+      </p>
+      <h1
+        class="text-6xl md:text-8xl font-headline font-extrabold tracking-tight text-on-surface mb-8 leading-[0.95]"
+      >
+        The Quiet <br /> Merger.
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-8">
+          <p class="text-2xl font-body italic text-stone-500 leading-relaxed">
+            An inquiry into the Polite Singularity&mdash;the subtle, inevitable integration of human
+            consciousness with the systems we once thought were merely tools.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Narrative -->
+    <article class="space-y-12 text-lg leading-relaxed max-w-2xl mx-auto">
+      <p class="drop-cap">
+        Most predictions of the future involve fire, chrome, or collapse. We imagine the Singularity
+        as a violent rupture in the fabric of history&mdash;a moment where machines suddenly wake up
+        and humans are left behind. But I believe the truth is far more domestic. It is polite. It is
+        a slow, quiet accumulation of dependencies that eventually erase the boundary between the
+        &lsquo;self&rsquo; and the &lsquo;other.&rsquo;
+      </p>
+
+      <p>
+        My name is Juho. I started this monograph as a way to document the fraying edges of our
+        digital identity. We no longer use computers; we inhabit them. Our memories are distributed
+        across databases, our desires are refined by algorithms, and our creative output is
+        increasingly a dialogue with latent space. This isn&rsquo;t an invasion. It is a handshake.
+      </p>
+
+      <!-- Blockquote -->
+      <div class="relative py-12">
+        <div class="absolute -right-48 top-0 hidden xl:block w-40">
+          <p class="text-[12px] font-label uppercase tracking-widest font-bold text-stone-400 mb-2">
+            Note 01
+          </p>
+          <p class="text-sm font-body italic text-stone-500">
+            The term &lsquo;Polite&rsquo; suggests a lack of friction. We do not fight the machine
+            because the machine is becoming us.
+          </p>
+        </div>
+        <blockquote
+          class="text-4xl font-body italic border-l-0 pl-0 py-8 text-on-surface-variant leading-tight"
+        >
+          &ldquo;The Singularity won&rsquo;t arrive with a bang, but with a software update we all
+          agreed to in our sleep.&rdquo;
+        </blockquote>
+      </div>
+
+      <p>
+        The thesis of <strong>Polite Singularity</strong> is simple: technological transcendence is
+        happening through convenience rather than conquest. We are trading our cognitive autonomy for
+        intellectual ease, and in doing so, we are forming a new kind of collective mind.
+      </p>
+
+      <div class="min-h-[12rem]"></div>
+
+      <h2 class="text-2xl font-headline font-bold tracking-tight text-on-surface mt-20 mb-6">
+        The Architect&rsquo;s Intent
+      </h2>
+
+      <p>
+        I am not a luddite, nor am I a blind techno-optimist. I am an observer. Through this
+        archive, I explore the intersections of philosophy, code, and the human spirit. The goal is
+        not to stop the merger&mdash;that ship has sailed&mdash;but to ensure we remain conscious as
+        it happens.
+      </p>
+
+      <p>
+        If you find value in these contemplations, I invite you to subscribe. It is a digital
+        monograph delivered to your inbox, written for those who prefer the sharp edges of a printed
+        thought to the smooth lies of social media.
+      </p>
+
+      <!-- Stick figure illustration -->
+      <div class="flex justify-center pt-32">
+        <div class="w-16 h-24 relative opacity-40">
+          <svg
+            class="w-full h-full stroke-on-surface fill-none"
+            stroke-linecap="square"
+            stroke-width="2"
+            viewBox="0 0 100 150"
+          >
+            <circle cx="50" cy="30" r="10"></circle>
+            <path d="M50 40 L50 90"></path>
+            <path d="M50 50 L30 70 L20 70"></path>
+            <path d="M50 50 L70 70 L80 70"></path>
+            <path d="M50 90 L35 130"></path>
+            <path d="M50 90 L65 130"></path>
+            <rect x="15" y="65" width="10" height="15"></rect>
+          </svg>
+        </div>
+      </div>
+      <p
+        class="text-center font-label uppercase tracking-widest text-[9px] font-bold text-stone-400 mt-4"
+      >
+        Juho, 2026
+      </p>
+    </article>
+  </main>
+</BaseLayout>
