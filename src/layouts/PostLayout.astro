@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 
 interface Props {
   title: string;
+  titleAccent?: string;
   subtitle?: string;
   description: string;
   date: Date;
@@ -11,7 +12,7 @@ interface Props {
   volume?: string;
 }
 
-const { title, subtitle, description, volume = 'Volume I' } = Astro.props;
+const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -27,7 +28,7 @@ const { title, subtitle, description, volume = 'Volume I' } = Astro.props;
         <h1
           style="font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.025em; color: #222; margin-bottom: 16px;"
         >
-          {title}
+          {title}{titleAccent && <><br /><span style="font-family: 'Newsreader', serif; font-style: italic; font-weight: 400; color: #885200;">{titleAccent}</span></>}.
         </h1>
         {
           subtitle && (
