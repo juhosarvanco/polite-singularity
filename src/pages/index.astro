@@ -31,23 +31,43 @@ function formatDate(date: Date): string {
       </h1>
     </header>
 
-    <ul class="space-y-4">
-      {posts.map((post) => (
-        <li>
-          <a
-            href={`/posts/${post.id}`}
-            class="font-body text-lg text-on-surface hover:text-primary transition-colors duration-150"
-          >
-            {post.data.title}
-          </a>
-        </li>
-      ))}
-      {posts.length === 0 && (
-        <li class="font-body italic text-on-surface-variant text-lg">
-          First essays arriving soon.
-        </li>
-      )}
-    </ul>
+    <div class="min-h-[8rem]"></div>
+  </section>
+
+  <!-- ABOUT / ARCHITECT'S INTENT -->
+  <section class="px-8 max-w-2xl mx-auto py-32">
+    <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-8">
+      The Architect's Intent
+    </p>
+    <div class="font-body text-[19px] leading-[1.75] text-on-surface space-y-6">
+      <p>
+        I am not a luddite, nor am I a blind techno-optimist. I am an observer — and
+        I find pretty much everything worth observing.
+      </p>
+      <p>
+        This is a place for long-form meditations on things that make my nerve endings
+        fire. That includes AI and the slow merger of biology with technology, yes —
+        but it also includes consciousness, evolution, the weirdness of physics, why
+        humans do the things they do, and whatever else climbs far enough up the
+        priority queue of my brain to demand 5,000 words of attention.
+      </p>
+      <p>
+        The angle isn't fixed. The curiosity is.
+      </p>
+      <p>
+        The goal isn't to have answers. It's to ask better questions — and to do it in
+        public, slowly, in long form, as a small act of resistance against the
+        everything-now, scroll-forever, take-the-hot-take-and-run culture that
+        surrounds us. If you've ever felt like there should be a place on the internet
+        where someone just... thinks something through properly — this is an attempt
+        at that.
+      </p>
+      <p>
+        If any of it resonates, the newsletter is the best way in. One long piece,
+        whenever it's ready, straight to your inbox. No noise. No algorithm. Just
+        the essay and you.
+      </p>
+    </div>
   </section>
 
   <!-- ARCHIVE -->
