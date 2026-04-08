@@ -8,17 +8,10 @@ interface Props {
   date: Date;
   category: string;
   readingTime?: string;
+  volume?: string;
 }
 
-const { title, subtitle, description, date, category, readingTime } = Astro.props;
-
-function formatDate(d: Date): string {
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-  });
-}
+const { title, subtitle, description, volume = 'Volume I' } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -26,14 +19,9 @@ function formatDate(d: Date): string {
     <article class="max-w-[680px] mx-auto">
       <!-- Metadata Header -->
       <header class="mb-12">
-        <div class="flex items-center gap-4 mb-6">
-          <span
-            class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary px-2 py-1 bg-primary-container/30"
-          >
-            {category}
-          </span>
-          <span class="font-label text-[10px] uppercase tracking-[0.2em] font-medium text-outline">
-            {formatDate(date)}{readingTime && ` — ${readingTime}`}
+        <div class="mb-6">
+          <span class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary">
+            {volume}
           </span>
         </div>
         <h1
