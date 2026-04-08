@@ -15,7 +15,7 @@ const { title, subtitle, description, volume = 'Volume I' } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <main class="pt-32 pb-20 px-6" style="font-family: 'Lora', Georgia, serif; color: #222;">
+  <main class="pt-32 pb-20 px-6" style="font-family: 'Lora', Georgia, serif; color: #222; background: #fff;">
     <article class="max-w-[680px] mx-auto">
       <!-- Metadata Header -->
       <header class="mb-12">
@@ -25,13 +25,13 @@ const { title, subtitle, description, volume = 'Volume I' } = Astro.props;
           </span>
         </div>
         <h1
-          class="font-body text-[42px] font-semibold text-on-surface mb-4 leading-[1.15]"
+          style="font-family: 'Lora', Georgia, serif; font-size: 42px; font-weight: 600; line-height: 1.15; color: #222; margin-bottom: 16px;"
         >
           {title}
         </h1>
         {
           subtitle && (
-            <p class="font-body text-[17px] italic text-outline leading-relaxed pb-6 border-b border-outline-variant">
+            <p style="font-family: 'Lora', Georgia, serif; font-size: 17px; font-style: italic; color: #666; line-height: 1.6; padding-bottom: 24px; border-bottom: 1px solid #ddd; margin-bottom: 0;">
               {subtitle}
             </p>
           )
