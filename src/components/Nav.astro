@@ -7,12 +7,13 @@ const { isHomePage = false } = Astro.props;
 
 const navItems = [
   { label: 'Home',       anchor: 'home' },
+  { label: 'Intent',     anchor: 'intent' },
   { label: 'Archive',    anchor: 'archive' },
   { label: 'Newsletter', anchor: 'newsletter' },
 ];
 ---
 
-<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-stone-50/80">
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/90">
   <nav class="flex justify-between items-center w-full px-8 py-6 max-w-7xl mx-auto">
     <a href="/" class="text-lg font-bold tracking-tighter text-stone-800 font-headline">
       Polite Singularity
@@ -42,7 +43,7 @@ const navItems = [
   </nav>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-stone-50/95 backdrop-blur-md px-8 pb-8 space-y-6">
+  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md px-8 pb-8 space-y-6">
     {navItems.map((item) => (
       <a
         href={isHomePage ? `#${item.anchor}` : `/#${item.anchor}`}
@@ -69,7 +70,7 @@ const navItems = [
   });
 
   // Scroll-spy: highlight active section in nav
-  const sections = ['home', 'archive', 'newsletter']
+  const sections = ['home', 'intent', 'archive', 'newsletter']
     .map((id) => document.getElementById(id))
     .filter(Boolean) as HTMLElement[];
 
