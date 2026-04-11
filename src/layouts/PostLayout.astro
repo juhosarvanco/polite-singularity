@@ -15,7 +15,7 @@ interface Props {
 const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={titleAccent ? `${title} ${titleAccent}` : title} description={description}>
   <main class="pt-32 pb-20" style="font-family: 'Lora', Georgia, serif; color: #222; background: #fff; overflow-x: hidden;">
     <article class="max-w-[680px] mx-auto px-6" style="overflow-x: hidden;">
       <!-- Metadata Header -->
