@@ -127,7 +127,7 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
 
 <script>
   const postUrl = window.location.href.split('?')[0].replace(/\/$/, '');
-  const apiUrl = `https://webmention.io/api/mentions.jf2?target=${encodeURIComponent(postUrl)}&per-page=50&sort-by=published`;
+  const apiUrl = `https://webmention.io/api/mentions.jf2?token=dbe_ARPjJ-ggpfOMidRmXg&target=${encodeURIComponent(postUrl)}&per-page=50&sort-by=published`;
 
   async function loadWebmentions() {
     const list = document.getElementById('webmention-list');
