@@ -53,6 +53,39 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
         <div class="w-16 h-px bg-outline-variant"></div>
       </div>
 
+      <!-- Share buttons -->
+      <section class="mt-12 pt-10 border-t border-outline-variant/30">
+        <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-6">
+          Share this essay
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a
+            id="share-x"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border border-outline-variant px-4 py-2 hover:border-on-surface transition-all"
+          >
+            X / Twitter
+          </a>
+          <a
+            id="share-linkedin"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border border-outline-variant px-4 py-2 hover:border-on-surface transition-all"
+          >
+            LinkedIn
+          </a>
+          <button
+            id="share-copy"
+            class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border border-outline-variant px-4 py-2 hover:border-on-surface transition-all cursor-pointer bg-transparent"
+          >
+            Copy link
+          </button>
+        </div>
+      </section>
+
       <!-- Author Bio -->
       <section class="mt-20 pt-12 border-t border-surface-container-highest">
         <div class="flex flex-col md:flex-row items-start gap-8">
@@ -110,16 +143,12 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
         </div>
       </section>
 
-      <!-- Webmentions -->
-      <section id="webmentions" class="mt-16 pt-12 border-t border-surface-container-highest">
+      <!-- Webmentions (hidden until mentions exist) -->
+      <section id="webmentions" class="mt-16 pt-12 border-t border-surface-container-highest" style="display: none;">
         <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-8">
           Shared by readers
         </p>
-        <div id="webmention-list" class="font-body text-on-surface-variant text-base leading-relaxed">
-          <p id="webmention-loading" style="font-family: 'Lora', Georgia, serif; font-style: italic; color: #888;">
-            Checking for shares...
-          </p>
-        </div>
+        <div id="webmention-list" class="font-body text-on-surface-variant text-base leading-relaxed"></div>
       </section>
     </article>
   </main>
@@ -127,12 +156,28 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
 
 <script>
   const postUrl = window.location.href.split('?')[0].replace(/\/$/, '');
+  const postTitle = document.title;
   const apiUrl = `https://webmention.io/api/mentions.jf2?token=dbe_ARPjJ-ggpfOMidRmXg&target=${encodeURIComponent(postUrl)}&per-page=50&sort-by=published`;
 
+  // Share buttons
+  const xBtn = document.getElementById('share-x') as HTMLAnchorElement;
+  const liBtn = document.getElementById('share-linkedin') as HTMLAnchorElement;
+  const copyBtn = document.getElementById('share-copy') as HTMLButtonElement;
+
+  if (xBtn) xBtn.href = `https://x.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(postTitle)}`;
+  if (liBtn) liBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(postUrl);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy link'; }, 2000);
+    });
+  }
+
   async function loadWebmentions() {
+    const section = document.getElementById('webmentions');
     const list = document.getElementById('webmention-list');
-    const loading = document.getElementById('webmention-loading');
-    if (!list) return;
+    if (!list || !section) return;
 
     try {
       const res = await fetch(apiUrl);
@@ -141,12 +186,9 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
         (m: any) => m['wm-property'] === 'mention-of' || m['wm-property'] === 'in-reply-to' || m['wm-property'] === 'repost-of' || m['wm-property'] === 'like-of'
       );
 
-      if (mentions.length === 0) {
-        if (loading) loading.textContent = 'No shares yet. Be the first.';
-        return;
-      }
+      if (mentions.length === 0) return;
 
-      if (loading) loading.remove();
+      section.style.display = 'block';
 
       // Group by type
       const reposts = mentions.filter((m: any) => m['wm-property'] === 'repost-of');
@@ -203,8 +245,7 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
 
       list.innerHTML = html;
     } catch (e) {
-      const loading = document.getElementById('webmention-loading');
-      if (loading) loading.textContent = '';
+      // Fail silently — section stays hidden
     }
   }
 
