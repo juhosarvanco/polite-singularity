@@ -68,6 +68,15 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
           >
             LinkedIn
           </a>
+          <a
+            id="share-facebook"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border border-outline-variant px-4 py-2 hover:border-on-surface transition-all"
+          >
+            Facebook
+          </a>
           <button
             id="share-copy"
             class="font-label uppercase tracking-widest text-[11px] font-bold text-on-surface border border-outline-variant px-4 py-2 hover:border-on-surface transition-all cursor-pointer bg-transparent"
@@ -153,10 +162,12 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
   // Share buttons
   const xBtn = document.getElementById('share-x') as HTMLAnchorElement;
   const liBtn = document.getElementById('share-linkedin') as HTMLAnchorElement;
+  const fbBtn = document.getElementById('share-facebook') as HTMLAnchorElement;
   const copyBtn = document.getElementById('share-copy') as HTMLButtonElement;
 
   if (xBtn) xBtn.href = `https://x.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(postTitle)}`;
   if (liBtn) liBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
+  if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
       await navigator.clipboard.writeText(postUrl);
