@@ -109,6 +109,104 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
           </div>
         </div>
       </section>
+
+      <!-- Webmentions -->
+      <section id="webmentions" class="mt-16 pt-12 border-t border-surface-container-highest">
+        <p class="font-label uppercase tracking-[0.2em] text-[10px] font-bold text-primary mb-8">
+          Shared by readers
+        </p>
+        <div id="webmention-list" class="font-body text-on-surface-variant text-base leading-relaxed">
+          <p id="webmention-loading" style="font-family: 'Lora', Georgia, serif; font-style: italic; color: #888;">
+            Checking for shares...
+          </p>
+        </div>
+      </section>
     </article>
   </main>
 </BaseLayout>
+
+<script>
+  const postUrl = window.location.href.split('?')[0].replace(/\/$/, '');
+  const apiUrl = `https://webmention.io/api/mentions.jf2?target=${encodeURIComponent(postUrl)}&per-page=50&sort-by=published`;
+
+  async function loadWebmentions() {
+    const list = document.getElementById('webmention-list');
+    const loading = document.getElementById('webmention-loading');
+    if (!list) return;
+
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      const mentions = (data.children || []).filter(
+        (m: any) => m['wm-property'] === 'mention-of' || m['wm-property'] === 'in-reply-to' || m['wm-property'] === 'repost-of' || m['wm-property'] === 'like-of'
+      );
+
+      if (mentions.length === 0) {
+        if (loading) loading.textContent = 'No shares yet. Be the first.';
+        return;
+      }
+
+      if (loading) loading.remove();
+
+      // Group by type
+      const reposts = mentions.filter((m: any) => m['wm-property'] === 'repost-of');
+      const likes = mentions.filter((m: any) => m['wm-property'] === 'like-of');
+      const replies = mentions.filter((m: any) => m['wm-property'] === 'in-reply-to' || m['wm-property'] === 'mention-of');
+
+      let html = '';
+
+      // Reposts + likes as avatars
+      const reactors = [...reposts, ...likes];
+      if (reactors.length > 0) {
+        html += `<div style="margin-bottom: 2rem;">`;
+        html += `<p style="font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #885200; margin-bottom: 0.75rem;">${reactors.length} share${reactors.length !== 1 ? 's' : ''}</p>`;
+        html += `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+        for (const m of reactors) {
+          const name = m.author?.name || 'Someone';
+          const photo = m.author?.photo;
+          const url = m.url || m['wm-source'];
+          html += `<a href="${url}" target="_blank" rel="noopener" title="${name}" style="display: inline-block;">`;
+          if (photo) {
+            html += `<img src="${photo}" alt="${name}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;" />`;
+          } else {
+            html += `<div style="width: 36px; height: 36px; border-radius: 50%; background: #e2e2e2; display: flex; align-items: center; justify-content: center; font-family: Manrope; font-size: 12px; font-weight: 700; color: #885200;">${name[0]}</div>`;
+          }
+          html += `</a>`;
+        }
+        html += `</div></div>`;
+      }
+
+      // Replies
+      if (replies.length > 0) {
+        html += `<div>`;
+        html += `<p style="font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #885200; margin-bottom: 1rem;">${replies.length} reply${replies.length !== 1 ? 's' : ''}</p>`;
+        for (const m of replies) {
+          const name = m.author?.name || 'Someone';
+          const photo = m.author?.photo;
+          const url = m.url || m['wm-source'];
+          const content = m.content?.text || '';
+          const date = m.published ? new Date(m.published).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+          html += `<div style="display: flex; gap: 12px; margin-bottom: 1.5rem;">`;
+          if (photo) {
+            html += `<img src="${photo}" alt="${name}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" />`;
+          } else {
+            html += `<div style="width: 36px; height: 36px; border-radius: 50%; background: #e2e2e2; display: flex; align-items: center; justify-content: center; font-family: Manrope; font-size: 12px; font-weight: 700; color: #885200; flex-shrink: 0;">${name[0]}</div>`;
+          }
+          html += `<div>`;
+          html += `<a href="${url}" target="_blank" rel="noopener" style="font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; color: #222; text-decoration: none;">${name}</a>`;
+          if (date) html += `<span style="font-family: 'Manrope', sans-serif; font-size: 10px; color: #888; margin-left: 8px;">${date}</span>`;
+          if (content) html += `<p style="font-family: 'Lora', Georgia, serif; font-size: 16px; color: #444; margin-top: 4px; margin-bottom: 0;">${content.slice(0, 280)}${content.length > 280 ? '…' : ''}</p>`;
+          html += `</div></div>`;
+        }
+        html += `</div>`;
+      }
+
+      list.innerHTML = html;
+    } catch (e) {
+      const loading = document.getElementById('webmention-loading');
+      if (loading) loading.textContent = '';
+    }
+  }
+
+  loadWebmentions();
+</script>
