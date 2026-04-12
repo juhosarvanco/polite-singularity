@@ -129,8 +129,8 @@ function formatDate(date: Date): string {
         </p>
       </div>
 
-      <form class="w-full max-w-md mx-auto pt-8" action="#" method="POST">
-        <div class="relative flex flex-col space-y-8">
+      <form id="newsletter-form-home" class="w-full max-w-md mx-auto pt-8" action="#" method="POST">
+        <div id="newsletter-fields-home" class="relative flex flex-col space-y-8">
           <div class="group">
             <label
               class="block font-label text-[10px] uppercase tracking-[0.2em] font-bold text-outline mb-1 text-left"
@@ -154,6 +154,9 @@ function formatDate(date: Date): string {
             Subscribe
           </button>
         </div>
+        <div id="newsletter-thanks-home" style="display: none;" class="py-8 text-center">
+          <p class="text-2xl font-body italic text-on-surface-variant">You're in. See you on the other side.</p>
+        </div>
         <p class="mt-8 font-label text-[10px] uppercase tracking-widest text-outline-variant">
           Respectful of your attention. One-click unsubscribe.
         </p>
@@ -162,3 +165,20 @@ function formatDate(date: Date): string {
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('newsletter-form-home') as HTMLFormElement;
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.querySelector('input[type="email"]') as HTMLInputElement)?.value;
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+    } catch {}
+    document.getElementById('newsletter-fields-home')!.style.display = 'none';
+    document.getElementById('newsletter-thanks-home')!.style.display = 'block';
+  });
+</script>
