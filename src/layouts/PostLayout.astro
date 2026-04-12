@@ -175,7 +175,7 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
             designed for focused coffee brake reading.
           </p>
         </div>
-        <form id="newsletter-form-post" class="w-full max-w-md mx-auto pt-8" action="#" method="POST">
+        <form id="newsletter-form-post" class="w-full max-w-md mx-auto pt-8" action="#" method="POST" data-netlify="true" name="newsletter">
           <div id="newsletter-fields-post" class="relative flex flex-col space-y-8">
             <div class="group">
               <label
@@ -317,10 +317,10 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
     e.preventDefault();
     const email = (nlForm.querySelector('input[type="email"]') as HTMLInputElement)?.value;
     try {
-      await fetch('/api/subscribe', {
+      await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': 'newsletter', email }).toString(),
       });
     } catch {}
     document.getElementById('newsletter-fields-post')!.style.display = 'none';
