@@ -10,12 +10,13 @@ interface Props {
   category: string;
   readingTime?: string;
   volume?: string;
+  ogImage?: string;
 }
 
-const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro.props;
+const { title, titleAccent, subtitle, description, volume = 'Volume I', ogImage } = Astro.props;
 ---
 
-<BaseLayout title={titleAccent ? `${title} ${titleAccent}` : title} description={description}>
+<BaseLayout title={titleAccent ? `${title} ${titleAccent}` : title} description={description} ogImage={ogImage}>
   <main class="pt-32 pb-20" style="font-family: 'Lora', Georgia, serif; color: #222; background: #fff; overflow-x: hidden;">
     <article class="max-w-[680px] mx-auto px-6" style="overflow-x: hidden;">
       <!-- Metadata Header -->

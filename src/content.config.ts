@@ -12,6 +12,7 @@ const posts = defineCollection({
     category: z.string(),
     readingTime: z.string().optional(),
     volume: z.string().default('Volume I'),
+    ogImage: z.string().optional(),
     draft: z.boolean().default(false),
     featured: z.boolean().default(false),
   }),
