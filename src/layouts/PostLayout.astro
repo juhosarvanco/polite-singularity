@@ -151,6 +151,61 @@ const { title, titleAccent, subtitle, description, volume = 'Volume I' } = Astro
         <div id="webmention-list" class="font-body text-on-surface-variant text-base leading-relaxed"></div>
       </section>
     </article>
+
+    <!-- Newsletter -->
+    <section class="max-w-[680px] mx-auto px-6 mt-32 pb-32">
+      <div class="max-w-2xl w-full text-center space-y-12 mx-auto">
+        <div class="w-20 h-20 mx-auto bg-surface-container flex items-center justify-center">
+          <svg
+            class="w-10 h-10 stroke-on-surface/50 fill-none"
+            stroke-linecap="square"
+            stroke-width="2"
+            viewBox="0 0 48 48"
+          >
+            <rect x="4" y="10" width="40" height="28" />
+            <polyline points="4,10 24,28 44,10" />
+          </svg>
+        </div>
+        <div class="space-y-10">
+          <h2 class="text-5xl md:text-7xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">
+            Join the quiet merger
+          </h2>
+          <p class="text-xl md:text-2xl font-body italic text-on-surface-variant max-w-xl mx-auto leading-relaxed">
+            Polite Singularity arrives at most a few times a year. A long-form meditation
+            designed for focused coffee brake reading.
+          </p>
+        </div>
+        <form class="w-full max-w-md mx-auto pt-8" action="#" method="POST">
+          <div class="relative flex flex-col space-y-8">
+            <div class="group">
+              <label
+                class="block font-label text-[10px] uppercase tracking-[0.2em] font-bold text-outline mb-1 text-left"
+                for="email-post"
+              >
+                Electronic Mail
+              </label>
+              <input
+                class="w-full bg-transparent border-0 border-b border-outline-variant py-4 px-0 text-xl font-body focus:ring-0 focus:border-primary transition-all placeholder:text-outline-variant/50 outline-none"
+                id="email-post"
+                name="email"
+                placeholder="reader@thought.com"
+                type="email"
+                required
+              />
+            </div>
+            <button
+              class="w-full bg-primary text-on-primary font-headline font-bold uppercase tracking-widest py-5 text-sm transition-all duration-150 ease-linear hover:bg-primary-dim"
+              type="submit"
+            >
+              Subscribe
+            </button>
+          </div>
+          <p class="mt-8 font-label text-[10px] uppercase tracking-widest text-outline-variant">
+            Respectful of your attention. One-click unsubscribe.
+          </p>
+        </form>
+      </div>
+    </section>
   </main>
 </BaseLayout>
 
