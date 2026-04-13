@@ -206,9 +206,9 @@
   /* Hero background illustration — adjust size and position here */
   #hero-bg {
     /* Mobile */
-    width: 120%;
+    width: 150%;
     right: 0;
-    top: 250px;
+    top: 300px;
   }
 
   @media (min-width: 768px) {
@@ -216,7 +216,7 @@
     #hero-bg {
       width: 80%;
       right: 200px;
-      top: 100px;
+      top: 90px;
     }
   }
 }
