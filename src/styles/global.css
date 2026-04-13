@@ -203,6 +203,32 @@
     }
   }
 
+  /* Mobile section spacing */
+  @media (max-width: 767px) {
+    #home {
+      min-height: 0;
+      padding-top: 120px;
+      padding-bottom: 0;
+    }
+    #home > div {
+      margin-top: -100px;
+    }
+    #intent {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+    #archive {
+      min-height: 0;
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+    #newsletter {
+      min-height: 0;
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+  }
+
   /* Hero background illustration — adjust size and position here */
   #hero-bg {
     /* Mobile */
