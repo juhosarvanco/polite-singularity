@@ -207,15 +207,15 @@
   #hero-bg {
     /* Mobile */
     width: 150%;
-    right: -20px;
-    top: 290px;
+    right: -30px;
+    top: 280px;
   }
 
   @media (min-width: 768px) {
     /* Desktop */
     #hero-bg {
       width: 75%;
-      right: 200px;
+      right: 220px;
       top: 90px;
     }
   }
