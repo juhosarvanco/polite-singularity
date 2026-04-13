@@ -202,4 +202,21 @@
       margin-right: 0;
     }
   }
+
+  /* Hero background illustration — adjust size and position here */
+  #hero-bg {
+    /* Mobile */
+    width: 100%;
+    right: 0;
+    top: 0;
+  }
+
+  @media (min-width: 768px) {
+    /* Desktop */
+    #hero-bg {
+      width: 84%;
+      right: 0;
+      top: 0;
+    }
+  }
 }
