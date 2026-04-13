@@ -208,7 +208,7 @@
     /* Mobile */
     width: 100%;
     right: 0;
-    top: 10;
+    top: 10px;
   }
 
   @media (min-width: 768px) {
