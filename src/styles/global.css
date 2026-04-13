@@ -206,7 +206,8 @@
   /* Hero background illustration — adjust size and position here */
   #hero-bg {
     /* Mobile */
-    width: 100%;
+    width: 150%;
+    height: auto;
     right: 0;
     top: 0;
   }
@@ -215,6 +216,7 @@
     /* Desktop */
     #hero-bg {
       width: 84%;
+      height: auto;
       right: 0;
       top: 0;
     }
