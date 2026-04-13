@@ -208,7 +208,7 @@
     /* Mobile */
     width: 100%;
     right: 0;
-    top: 100px;
+    top: 500px;
   }
 
   @media (min-width: 768px) {
@@ -216,7 +216,7 @@
     #hero-bg {
       width: 84%;
       right: 90px;
-      top: 0;
+      top: 110px;
     }
   }
 }
