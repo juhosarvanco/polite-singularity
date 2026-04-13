@@ -208,14 +208,14 @@
     /* Mobile */
     width: 100%;
     right: 0;
-    top: 300px;
+    top: 200px;
   }
 
   @media (min-width: 768px) {
     /* Desktop */
     #hero-bg {
       width: 84%;
-      right: 130px;
+      right: 160px;
       top: 110px;
     }
   }
