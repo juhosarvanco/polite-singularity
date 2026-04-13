@@ -207,7 +207,7 @@
   #hero-bg {
     /* Mobile */
     width: 150%;
-    right: -30px;
+    right: -60px;
     top: 280px;
   }
 
@@ -216,7 +216,7 @@
     #hero-bg {
       width: 75%;
       right: 220px;
-      top: 90px;
+      top: 95px;
     }
   }
 }
