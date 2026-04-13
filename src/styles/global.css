@@ -208,17 +208,17 @@
     /* Mobile */
     width: 150%;
     height: auto;
-    right: 0;
-    top: 0;
+    right: -60px;
+    top: 280px;
   }
 
   @media (min-width: 768px) {
     /* Desktop */
     #hero-bg {
-      width: 84%;
+      width: 75%;
       height: auto;
-      right: 0;
-      top: 0;
+      right: 220px;
+      top: 95px;
     }
   }
 }
