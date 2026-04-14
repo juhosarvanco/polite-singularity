@@ -233,10 +233,10 @@
   /* Hero background illustration — adjust size and position here */
   #hero-bg {
     /* Mobile — use vw units to escape Tailwind's max-width: 100% cap */
-    width: 150vw;
+    width: 85vw;
     max-width: none;
     height: auto;
-    right: -180px;
+    right: 0;
     top: 84px;
   }
 
