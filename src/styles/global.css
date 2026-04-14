@@ -207,7 +207,7 @@
   @media (max-width: 767px) {
     #home {
       min-height: 0;
-      padding-top: 120px;
+      padding-top: 100px;
       padding-bottom: 0;
     }
     #home > div {
@@ -220,7 +220,7 @@
     #archive {
       min-height: 0;
       padding-top: 30px;
-      padding-bottom: 100px;
+      padding-bottom: 50px;
     }
     #newsletter {
       min-height: 0;
