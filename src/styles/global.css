@@ -208,14 +208,14 @@
   @media (max-width: 767px) {
     #home {
       min-height: 0;
-      padding-top: 150px;
+      padding-top: 155px;
       padding-bottom: 0;
     }
     #home > div {
       margin-top: 0px;
     }
     #intent {
-      padding-top: 0px;
+      padding-top: 10px;
       padding-bottom: 100px;
     }
     #archive {
