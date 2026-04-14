@@ -207,7 +207,7 @@
   @media (max-width: 767px) {
     #home {
       min-height: 0;
-      padding-top: 100px;
+      padding-top: 80px;
       padding-bottom: 0;
     }
     #home > div {
@@ -235,7 +235,7 @@
     width: 100%;
     height: auto;
     right: -60px;
-    top: 124px;
+    top: 84px;
   }
 
   @media (min-width: 768px) {
