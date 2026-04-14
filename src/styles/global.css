@@ -214,7 +214,7 @@
       margin-top: 0px;
     }
     #intent {
-      padding-top: 80px;
+      padding-top: 60px;
       padding-bottom: 100px;
     }
     #archive {
@@ -224,7 +224,7 @@
     }
     #newsletter {
       min-height: 0;
-      padding-top: 100px;
+      padding-top: 0px;
       padding-bottom: 100px;
     }
   }
