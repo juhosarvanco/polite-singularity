@@ -8,6 +8,10 @@
     color: #5d3700;
   }
 
+  html {
+    overflow-x: hidden; /* Prevents document expanding wider than viewport */
+  }
+
   body {
     font-family: 'Newsreader', serif;
     color: #323232;
@@ -236,7 +240,7 @@
     width: 150vw;
     max-width: none;
     height: auto;
-    right: 0;
+    right: -180px;
     top: 84px;
   }
 
